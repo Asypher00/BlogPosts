@@ -33,7 +33,9 @@ const authMiddleware = require("../middlewares/authMiddleware");
 
 const router = express.Router();
 
-//router.get("/user/my-posts", authMiddleware, getMyPosts);
+
+router.get("/user/my-posts", authMiddleware, getMyPosts);
+
 // Public routes (no authentication required)
 router.get("/", getAllPosts);
 router.get("/:id", getPostById);
@@ -42,8 +44,5 @@ router.get("/:id", getPostById);
 router.post("/", authMiddleware, createPost);
 router.put("/:id", authMiddleware, updatePost);
 router.delete("/:id", authMiddleware, deletePost);
-
-// This route needs to be BEFORE the /:id route to avoid conflicts
-
 
 module.exports = router;
