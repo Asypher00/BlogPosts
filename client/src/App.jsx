@@ -20,7 +20,7 @@ const API_BASE_URL = "http://localhost:5000/api";
 const api = {
   //Auth endpoints
   register: async (userData) => {
-    const response = await fetch(`${API_BASE_URL}/register`, {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -32,7 +32,7 @@ const api = {
   },
 
   login: async (credentials) => {
-    const response = await fetch(`${API_BASE_URL}/login`, {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -167,7 +167,7 @@ const AuthProvider = ({ children }) => {
 
 const LoginForm = ({ onSwitchToRegister }) => {
   const [formData, setFormData] = useState({
-    email: "",
+    username: "",
     password: "",
   })
   const [errors, setErrors] = useState({});
@@ -218,8 +218,8 @@ const LoginForm = ({ onSwitchToRegister }) => {
             Email
           </label>
           <input
-            type="email"
-            name="email"
+            type="text"
+            name="username"
             value={formData.email}
             onChange={handleChange}
             className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"

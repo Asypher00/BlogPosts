@@ -13,7 +13,7 @@ app.use(express.json());
 
 // Routes
 app.use("/api/auth", authRoutes);
-app.use("/api/blogs", authenticateToken, blogRoutes);
+app.use("/api/blogs", blogRoutes);
 
 // Error handler
 app.use((err, req, res, next) => {
