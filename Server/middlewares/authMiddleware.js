@@ -1,4 +1,3 @@
-// authMiddleware.js
 const jwt = require("jsonwebtoken");
 const User = require("../models/users");
 require("dotenv").config();
@@ -31,7 +30,7 @@ const authenticateToken = async (req, res, next) => {
             email: decoded.email,
         };
 
-        next(); // This must be called to continue to the next middleware
+        next(); 
     } catch (error) {
         if (error.name === 'JsonWebTokenError') {
             return res.status(403).json({

@@ -1,12 +1,3 @@
-// User Schema
-// {
-//   id: Number,
-//   username: String,
-//   email: String,
-//   password: String (hashed),
-//   createdAt: Date
-// }
-
 const mongoose = require("mongoose") ; 
 require("dotenv").config() ; 
 const bcrypt = require("bcrypt") ; 
