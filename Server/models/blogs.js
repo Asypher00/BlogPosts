@@ -1,14 +1,3 @@
-// Blog Post Schema
-// {
-//   id: Number,
-//   title: String,
-//   content: String,
-//   authorId: Number,
-//   authorName: String,
-//   createdAt: Date,
-//   updatedAt: Date
-// }
-
 const mongoose = require("mongoose") ; 
 
 const blogSchema = mongoose.Schema({
@@ -16,7 +5,7 @@ const blogSchema = mongoose.Schema({
         type: String,
         required: [true, "Title is required"],
         trim: true,
-        maxlength: [true, "Title cannot exceed 100 characters"],
+        maxlength: [100, "Title cannot exceed 100 characters"],
     },
 
     content: {
@@ -33,7 +22,7 @@ const blogSchema = mongoose.Schema({
 
     authorName: {
         type: String,
-        reuired: [true, "Author name is required"],
+        required: [true, "Author name is required"],
     },
 }, {
     timestamps: true,
