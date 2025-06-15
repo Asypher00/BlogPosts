@@ -32,40 +32,40 @@ export const BlogPostCard = ({ post, onEdit, onDelete, showActions = true }) => 
             }
             {!expand &&
                 <div className="flex justify-between items-start mb-4">
-                <div>
-                    <h3 className="text-xl font-semibold text-gray-800 mb-2">{post.title}</h3>
-                    <div className="text-sm text-gray-600">
-                        By {post.authorName || post.authorId?.username} • {formatDate(post.createdAt)}
-                        {post.updatedAt !== post.createdAt && (
-                            <span> • Updated {formatDate(post.updatedAt)}</span>
+                    <div>
+                        <h3 className="text-xl font-semibold text-gray-800 mb-2">{post.title}</h3>
+                        <div className="text-sm text-gray-600">
+                            By {post.authorName || post.authorId?.username} • {formatDate(post.createdAt)}
+                            {post.updatedAt !== post.createdAt && (
+                                <span> • Updated {formatDate(post.updatedAt)}</span>
+                            )}
+                        </div>
+                    </div>
+                    <div className="flex space-x-2">
+                        <div>
+                            <button
+                                onClick={handleView}
+                                className="text-green-600 hover:text-green-800 text-sm"
+                            >View</button>
+                        </div>
+                        {showActions && (
+                            <div className="flex space-x-2">
+                                <button
+                                    onClick={() => onEdit(post)}
+                                    className="text-blue-600 hover:text-blue-800 text-sm"
+                                >
+                                    Edit
+                                </button>
+                                <button
+                                    onClick={() => onDelete(post._id)}
+                                    className="text-red-600 hover:text-red-800 text-sm"
+                                >
+                                    Delete
+                                </button>
+                            </div>
                         )}
                     </div>
                 </div>
-                <div className="flex space-x-2">
-                    <div>
-                        <button
-                            onClick={handleView}
-                            className="text-green-600 hover:text-green-800 text-sm"
-                        >View</button>
-                    </div>
-                    {showActions && (
-                        <div className="flex space-x-2">
-                            <button
-                                onClick={() => onEdit(post)}
-                                className="text-blue-600 hover:text-blue-800 text-sm"
-                            >
-                                Edit
-                            </button>
-                            <button
-                                onClick={() => onDelete(post._id)}
-                                className="text-red-600 hover:text-red-800 text-sm"
-                            >
-                                Delete
-                            </button>
-                        </div>
-                    )}
-                </div>
-            </div>
             }
             {!expand && <div className="text-gray-700 whitespace-pre-wrap">{truncateContent(post.content)}</div>}
         </div>
