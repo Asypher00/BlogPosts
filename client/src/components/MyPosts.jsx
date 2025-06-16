@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react" ; 
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../customHooks/useAuth";
 import { api } from "../api";
@@ -9,7 +9,9 @@ export const MyPostsPage = () => {
   const [loading, setLoading] = useState(true);
   const [editingPost, setEditingPost] = useState(null);
   const { token } = useAuth();
-  const { getMyPosts,updatePost } = api ; 
+  const { getMyPosts, updatePost } = api;
+  const [filteredList, setFilteredList] = useState([]);
+  const [searchText, setSearchText] = useState("");
   const fetchMyPosts = async () => {
     try {
       const result = await getMyPosts(token);
@@ -26,6 +28,15 @@ export const MyPostsPage = () => {
   useEffect(() => {
     fetchMyPosts();
   }, [token]);
+
+  useEffect(() => {
+    if (searchText === "") {
+      setFilteredList(posts);
+    } else {
+      const tempList = posts.filter((p) => p.title.toLowerCase().trim().includes(searchText.trim().toLocaleLowerCase()));
+      setFilteredList(tempList);
+    }
+  }, [searchText, posts])
 
   const handleUpdatePost = async (postData) => {
     try {
@@ -62,6 +73,17 @@ export const MyPostsPage = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <div className="flex flex-col md:flex-row gap-2 md:gap-4 md:items-center md:w-1/2 " style={{ paddingBottom: "10px" }}>
+        <input
+          type="text"
+          name="searchTitle"
+          className="px-3 py-2 rounded-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-400 text-black"
+          placeholder="Search by Title"
+          onChange={(e) => {
+            setSearchText(e.target.value)
+          }}
+        />
+      </div>
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800">My Posts</h1>
         <Link
@@ -91,7 +113,7 @@ export const MyPostsPage = () => {
             </div>
           </div>
         ) : (
-          posts.map((post) => (
+          filteredList.map((post) => (
             <BlogPostCard
               key={post._id}
               post={post}
