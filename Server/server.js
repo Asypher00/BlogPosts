@@ -20,6 +20,9 @@ app.use(express.json());
 // Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
+app.get('/', (req, res) => {
+  res.json({ message: 'Blog API is running!' });
+});
 
 // Error handler
 app.use((err, req, res, next) => {
