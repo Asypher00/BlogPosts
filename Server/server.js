@@ -8,7 +8,13 @@ const authenticateToken  = require("./middlewares/authMiddleware");
 
 const app = express();
 
-app.use(cors());
+//app.use(cors());
+app.use(cors({
+  origin: [
+    'http://localhost:3000',
+    'https://your-frontend-url.vercel.app'
+  ]
+}));
 app.use(express.json());
 
 // Routes
