@@ -21,7 +21,7 @@ app.use(cors({
     'http://localhost:3000',
     'http://localhost:4173',  // ← ADD THIS LINE (Vite preview port)
     'http://localhost:5173',  // ← ADD THIS LINE (Vite dev port)
-    'https://your-frontend-url.vercel.app' // Your production frontend
+    'https://blog-posts-black-nu.vercel.app/' // Your production frontend
   ],
   credentials: true, // If you're using cookies/sessions
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
