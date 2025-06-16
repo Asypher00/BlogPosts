@@ -9,11 +9,23 @@ const authenticateToken  = require("./middlewares/authMiddleware");
 const app = express();
 
 //app.use(cors());
+// app.use(cors({
+//   origin: [
+//     'http://localhost:3000',
+//     'https://your-frontend-url.vercel.app'
+//   ]
+// }));
+
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'https://your-frontend-url.vercel.app'
-  ]
+    'http://localhost:4173',  // ← ADD THIS LINE (Vite preview port)
+    'http://localhost:5173',  // ← ADD THIS LINE (Vite dev port)
+    'https://your-frontend-url.vercel.app' // Your production frontend
+  ],
+  credentials: true, // If you're using cookies/sessions
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 
