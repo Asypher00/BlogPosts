@@ -15,7 +15,7 @@ const loginUser = zod.object({
             message: "password must be atleast 6 characters long"
         })
         .max(100, {
-            message: "username must be 100 characters or less"
+            message: "password must be 100 characters or less"
         })
         .regex(/[A-Z]/, {
             message: "Password must contain at least one uppercase letter"

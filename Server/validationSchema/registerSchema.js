@@ -12,7 +12,7 @@ const registerUser = zod.object({
 
     email: zod.string()
         .email({
-            message: "Invalid Wmail Address"
+            message: "Invalid Email Address"
         }),
 
     password: zod.string()
@@ -20,7 +20,7 @@ const registerUser = zod.object({
             message: "password must be atleast 6 characters long"
         })
         .max(100, {
-            message: "username must be 100 characters or less"
+            message: "Password must be 100 characters or less"
         })
         .regex(/[A-Z]/, {
             message: "Password must contain at least one uppercase letter"

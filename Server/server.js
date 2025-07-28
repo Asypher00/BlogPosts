@@ -8,35 +8,27 @@ const authenticateToken  = require("./middlewares/authMiddleware");
 
 const app = express();
 
-//app.use(cors());
-// app.use(cors({
-//   origin: [
-//     'http://localhost:3000',
-//     'https://your-frontend-url.vercel.app'
-//   ]
-// }));
-
 app.use(cors({
   origin: [
     'http://localhost:3000',
-    'http://localhost:4173',  // ← ADD THIS LINE (Vite preview port)
-    'http://localhost:5173',  // ← ADD THIS LINE (Vite dev port)
-    'https://blog-posts-black-nu.vercel.app' // Your production frontend
+    'http://localhost:4173',  
+    'http://localhost:5173',  
+    'https://blog-posts-black-nu.vercel.app',
   ],
-  credentials: true, // If you're using cookies/sessions
+  credentials: true, 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
 app.use(express.json());
 
-// Routes
+
 app.use("/api/auth", authRoutes);
 app.use("/api/blogs", blogRoutes);
 app.get('/', (req, res) => {
   res.json({ message: 'Blog API is running!' });
 });
 
-// Error handler
+
 app.use((err, req, res, next) => {
     console.error(err.stack);
     res.status(500).json({
